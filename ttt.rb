@@ -130,8 +130,8 @@ class TTTGame
     display_welcome_message
     loop do
       clear_screen_and_display_board
-      loop do
-        randomize_first_player
+      randomize_first_player
+      loop do        
         current_player_moves
         break if board.someone_won? || board.full?
         clear_screen_and_display_board if human_turn?
@@ -331,7 +331,7 @@ class TTTGame
 
   def reset
     board.reset
-    @current_marker = FIRST_TO_MOVE
+    @current_marker = [human.marker, computer.marker].sample
     clear_board
   end
 
