@@ -99,9 +99,7 @@ class Deck
     @cards = []
     SUITS.each do |suit|
       VALUES.each do |face|
-        arr = []
-        arr.push(face, suit)
-        cards << arr
+        cards << [face, suit]
       end
     end
   end
