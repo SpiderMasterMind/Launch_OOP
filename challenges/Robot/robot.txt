@@ -1,0 +1,29 @@
+Robot placed on grid with x,y co ordinates
+Robot placed in a room facing a particular direction, at a co-ordinate it received instructions to move
+- find where it finished
+Robot placed in a room and given movement instructions and co ordinates - find where it finishes
+
+A robot object could contain the following ivars:
+- bearing (direction it is facing) - N, S, E or W
+
+A second room object could contain:
+-position of the robot object - as x,y - hash? array?
+
+when turning right
+north => east
+east => south
+south => west
+west => north
+
+when turning left
+north => west
+west => south
+south => east
+east => north
+
+Need data structure for this
+ ? call hash values from key
+
+ ? Work with modulus/numbering (will still require a hash or similar)
+
+ ? Series of conditionals/case statements
