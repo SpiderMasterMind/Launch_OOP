@@ -1,22 +1,23 @@
 require 'pry'
 class Diamond
   LETTERS = ["a", "b", "c", "d", "e"]
+  attr_accessor :width, :letters_array, :target_char
 
-
-  def make_diamond(char)
-    array = make_array(char)
+  def self.make_diamond(char)
     width = find_width(char)
+    letters_array = make_array(char)
 
-  #  array.map  do |letter_group|
-   #   letter_group.add_inner_pad(width)
-    #  letter_group.add_outerpad
-     # letter_group.add_newline
+    target_char = char
 
-    # end
+    result = letters_array.map do |letters|
+      inner_pad(letters)
+      outer_pad(letters)# - this method is ready to go
+    end
+    p result
   end
 
 
-  def find_inner_pad(letter_on_line)
+  def self.find_inner_pad(letter_on_line)
     if LETTERS.index(letter_on_line) == 0
       return 0
     else
@@ -26,23 +27,26 @@ class Diamond
 
   end
 
-  def inner_pad(string)
+  def self.inner_pad(letters)
+    return "a" if letters[0] == "a"
     result = []
-    result << string[0]
-    result << " " * find_inner_pad(string[0])
-    result << string[1]
+    result << letters[0]
+    result << " " * find_inner_pad(letters[0])
+    result << letters[1]
     result.join
 
   end
 
-  def find_outer_pad(letter_on_line)
-    if LETTERS.index(letter_on_line) == 
+  def self.outer_pad(letter_on_line)
+    if letter_on_line == "a"
+       width - 1
+    else
+      result = width - find_inner_pad(letter_on_line)
+      result / 2
     end
   end
 
-
-
-  def make_array(char)
+  def self.make_array(char)
     index_of_target_letter = LETTERS.index(char)
 
     array = LETTERS[0..index_of_target_letter]
@@ -55,26 +59,11 @@ class Diamond
 
   end
 
-  def find_width(char)
+  def self.find_width(char)
     LETTERS.index(char) * 2 + 1
   end
 
-  def find_inner_padding_of_line()
-  end
 end
 
-test = Diamond.new
-p test.inner_pad("ee")
-p test.outer_pad("dd")
-# get value of letter
-# this is the total length of each line + \n
-  # a => "A\n"
- # form array of letters, each with index up to target letter, then some sort of EWI backwards
+test = Diamond.make_diamond("e")
 
-
-# find width of square
-# subtract 1 or 2 (for characters)
-# inner padding is letter index + 2
-# outer padding is width - inner - (1 or 2)
-# 1,3,5,7,9
-# 0,1,2,3,4
